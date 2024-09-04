@@ -1,13 +1,17 @@
-version: "3.7"
 services:
   postgres:
-    image: debezium/postgres:13
+    image: postgres:16.4
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./postgres:/docker-entrypoint-initdb.d
     ports:
       - 5432:5432
-    environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=exampledb
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical"
 
   zookeeper:
     image: confluentinc/cp-zookeeper:5.5.3
@@ -27,7 +31,7 @@ services:
       - 9092:9092
 
   debezium:
-    image: debezium/connect:1.4
+    image: debezium/connect:1.9
     environment:
       BOOTSTRAP_SERVERS: kafka:9092
       GROUP_ID: 1
