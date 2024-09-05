@@ -13,7 +13,7 @@ curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" 
 Para conectar no tópico do Kafka e visualizar as mensagens em tempo real:
 
 ```
-docker run --tty --network postgres_debezium_cdc_default --name postgres_debezium_cdc-kafkacat confluentinc/cp-kafkacat kafkacat -b kafka:9092 -C -s key=s -s value=avro -r http://schema-registry:8081 -t postgres-server.public.orders
+docker run --tty --network postgres_debezium_cdc_default --name postgres_debezium_cdc-kafkacat confluentinc/cp-kafkacat kafkacat -b kafka:9092 -C -t sales_orders.public.orders
 ```
 
 Debezium UI:

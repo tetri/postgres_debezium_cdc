@@ -28,7 +28,7 @@ BEGIN
         INSERT INTO orders (order_date, customer_id, amount, region)
         VALUES (random_date, random_customer_id, random_amount, random_region);
 
-        PERFORM pg_sleep(.2);
+        --PERFORM pg_sleep(.2);
     END LOOP;
 END
 $$ LANGUAGE plpgsql;
@@ -58,7 +58,7 @@ BEGIN
             region = random_region
         WHERE order_id = random_order_id;
         
-        PERFORM pg_sleep(.2);
+        --PERFORM pg_sleep(.2);
     END LOOP;
 END
 $function$
@@ -80,7 +80,7 @@ BEGIN
         DELETE FROM orders
         WHERE order_id = random_order_id;
         
-        PERFORM pg_sleep(.2);
+        --PERFORM pg_sleep(.2);
     END LOOP;
 END
 $$ LANGUAGE plpgsql;

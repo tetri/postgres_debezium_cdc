@@ -1,0 +1,11 @@
+node_modules
+mongo-data
+postgres
+postgres-data
+npm-debug.log
+Dockerfile
+Dockerfile.dev
+.bat
+.git
+.gitignore
+README.md

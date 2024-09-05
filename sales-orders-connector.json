@@ -11,7 +11,7 @@
     "slot.name": "sales_orders_slot",
     "publication.name": "sales_orders_publication",
     "topic.prefix": "sales_orders",
-    "database.server.name": "postgres-server",
+    "database.server.name": "postgres_server",
     "table.include.list": "public.orders"
   }
 }
