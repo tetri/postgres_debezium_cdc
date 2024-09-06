@@ -2,16 +2,20 @@
   "name": "sales-orders-connector",
   "config": {
     "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+
     "database.hostname": "postgres",
+
+    "plugin.name": "pgoutput",
+    "publication.name": "sales_orders_publication",
+    "slot.name": "sales_orders_slot",
+
     "database.port": "5432",
     "database.user": "user",
     "database.password": "IP+)Z5iWFh*8>S6`",
     "database.dbname": "sales",
-    "plugin.name": "pgoutput",
-    "slot.name": "sales_orders_slot",
-    "publication.name": "sales_orders_publication",
-    "topic.prefix": "sales_orders",
     "database.server.name": "postgres_server",
+
+    "topic.prefix": "sales_orders",
     "table.include.list": "public.orders"
   }
 }

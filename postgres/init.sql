@@ -84,3 +84,9 @@ BEGIN
     END LOOP;
 END
 $$ LANGUAGE plpgsql;
+
+select generate_orders(10000);
+
+select update_random_orders(1000);
+
+select delete_random_orders(1000);
