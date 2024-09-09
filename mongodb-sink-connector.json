@@ -17,6 +17,10 @@
     "collection": "orders",
 
     "document.id.strategy": "com.mongodb.kafka.connect.sink.processor.id.strategy.FullKeyStrategy",
-    "document.id.strategy.overwrite.existing": "true"
+    "document.id.strategy.overwrite.existing": "true",
+
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "org.apache.kafka.connect.transforms.ExtractField$Value",
+    "transforms.unwrap.field": "after"
   }
 }
