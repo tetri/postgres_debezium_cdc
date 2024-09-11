@@ -14,7 +14,7 @@ CREATE TABLE orders (
 
 ALTER TABLE orders REPLICA IDENTITY FULL;
 
-CREATE TEMP TABLE region_location_mapping (
+CREATE TABLE region_location_mapping (
     region VARCHAR(50),
     location VARCHAR(100)
 );
@@ -48,7 +48,7 @@ INSERT INTO region_location_mapping (region, location) VALUES
     ('Centro-Oeste', 'Mato Grosso'),
     ('Centro-Oeste', 'Mato Grosso do Sul');
 
-CREATE TEMP TABLE salesperson_mapping (
+CREATE TABLE salesperson_mapping (
     salesperson_id INT,
     salesperson_name VARCHAR(100)
 );
@@ -115,7 +115,7 @@ INSERT INTO salesperson_mapping (salesperson_id, salesperson_name) VALUES
     (59, 'Leandro Martins'),
     (60, 'Ariane Oliveira');
 
-CREATE TEMP TABLE customer_mapping (
+CREATE TABLE customer_mapping (
     customer_id INT,
     customer_name VARCHAR(100)
 );
@@ -200,12 +200,12 @@ DECLARE
 
 BEGIN
     FOR i IN 1..num_records LOOP
-        random_date := CURRENT_DATE - (RANDOM() * 365 * 5)::INT;
+        random_date := CURRENT_DATE - (RANDOM() * 365 * 9)::INT;
         random_customer_id := (RANDOM() * 60)::INT + 1;
         random_salesperson_id := (RANDOM() * 60)::INT + 1;
         random_amount := (RANDOM() * 100000)::NUMERIC(10, 2);
-        random_discount := (RANDOM() * 0.2 * random_amount)::NUMERIC(10, 2);
-        random_commission := (0.05 * (random_amount - random_discount))::NUMERIC(10, 2);
+        random_discount := (RANDOM() * 0.1 * random_amount)::NUMERIC(10, 2);
+        random_commission := (0.025 * (random_amount - random_discount))::NUMERIC(10, 2);
 
         SELECT region, location INTO random_region, random_customer_location
         FROM region_location_mapping
@@ -244,8 +244,8 @@ BEGIN
         LIMIT 1;
         
         random_amount := (RANDOM() * 100000)::NUMERIC(10, 2);
-        random_discount := (RANDOM() * 0.2 * random_amount)::NUMERIC(10, 2);
-        random_commission := (0.05 * (random_amount - random_discount))::NUMERIC(10, 2);
+        random_discount := (RANDOM() * 0.1 * random_amount)::NUMERIC(10, 2);
+        random_commission := (0.025 * (random_amount - random_discount))::NUMERIC(10, 2);
         
         UPDATE orders
         SET amount = random_amount,
@@ -276,8 +276,8 @@ BEGIN
 END
 $$ LANGUAGE plpgsql;
 
-SELECT generate_orders(50100);
+SELECT generate_orders(10100);
 
-SELECT update_random_orders(10000);
+SELECT update_random_orders(1000);
 
 SELECT delete_random_orders(100);

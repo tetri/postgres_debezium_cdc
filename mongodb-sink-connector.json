@@ -2,7 +2,7 @@
   "name": "mongodb-sink-connector",
   "config": {
     "connector.class": "com.mongodb.kafka.connect.MongoSinkConnector",
-    "tasks.max": "2",
+    "tasks.max": "1",
 
     "key.converter": "io.confluent.connect.avro.AvroConverter",
     "key.converter.schema.registry.url": "http://schema-registry:8081",
@@ -21,6 +21,8 @@
 
     "transforms": "unwrap",
     "transforms.unwrap.type": "org.apache.kafka.connect.transforms.ExtractField$Value",
-    "transforms.unwrap.field": "after"
+    "transforms.unwrap.field": "after",
+
+    "delete.on.null.values": "true"
   }
 }

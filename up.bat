@@ -1,7 +1,8 @@
 @echo off
 
 :: Subir os serviços com docker-compose
-docker-compose up --build -d
+::docker-compose up --build -d
+docker-compose up -d
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 :: Esperar 30 segundos
